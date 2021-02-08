@@ -54,7 +54,7 @@ jobs:
       run: make init
 
     - name: Force rebuild of pages and dataset
-      run: make clobber
+      run: make clobber-docs
 
     - name: Build docs
       run: make render
