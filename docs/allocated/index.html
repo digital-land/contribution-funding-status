@@ -124,7 +124,7 @@
                 </a>
             </li><li class="dlf-subnav__list-item">
                 <a class="dlf-subnav__list-item__link" href="#referenced-by" data-module-sub-nav="tab">
-                Referenced by (0)
+                0 References
                 </a>
             </li>
         </ul>
@@ -174,18 +174,18 @@
             <th>entry-date</th>
             <th>resource</th>
             <th>line</th>
-            <th>name</th>
-            <th>contribution-funding-status</th>
             <th>start-date</th>
+            <th>contribution-funding-status</th>
+            <th>name</th>
         </tr>
     </thead>
     <tbody>        <tr>
             <td>2019-03-27</td>
             <td><a href="https://github.com/digital-land/contribution-funding-status-collection/tree/main/transformed/contribution-funding-status/2a0d245b5bdf9a95665cafe11e0823698ca2edc099d2d8a1ecabf465269e38c2.csv#L4">2a0d245b5bdf...</a></td>
             <td>3</td>
-                <td>Allocated</td> 
-                <td>allocated</td> 
                 <td>2019-03-27</td> 
+                <td>allocated</td> 
+                <td>Allocated</td> 
         </tr>    </tbody>
 </table>
 
@@ -291,8 +291,24 @@
 	</script>
 
 <script>
+    const datasetName = "contribution-funding-status"
     const $mapElement = document.querySelector('[data-module="boundary-map"]')
-    const mapComponent = new DLMaps.Map($mapElement).init({})
+    const $nationalMapLink = document.querySelector('.dl-link-national-map')
+    const mapComponent = new DLMaps.Map($mapElement).init({
+        initGeoJsonLoadCallback: function (urls, featureGroup) {
+            console.log("initial load completed")
+            // do we need to check there isn't more than one shape?
+            const center = featureGroup.getBounds().getCenter()
+            const zoom = mapComponent.map.getZoom()
+            let url = `http://digital-land.github.io/leaflet-spike/?layer=${datasetName}#${center.lat},${center.lng},${zoom}z`
+            console.log(url)
+            if ($nationalMapLink) {
+                // only show this for the datasets we've added to the national map
+                $nationalMapLink.href = url
+                $nationalMapLink.classList.remove("js-hidden")
+            }
+        }
+    })
 </script>
 <script>
     // Initialise back to top
