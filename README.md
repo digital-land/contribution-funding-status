@@ -1,14 +1,4 @@
-# Contribution Funding Status pages
-
-We recommend working in [virtual environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/) before installing the python [requirements](requirements.txt), [makerules](https://github.com/digital-land/makerules) and other dependencies:
-
-    $ make makerules
-    $ make init
-    $ make
-
-# Nightly
-
-These pages are [updated nightly](https://github.com/digital-land/contribution-funding-status/actions) by the [GitHub Action](.github/workflows/run.yml).
+Redirected
 
 # Licence
 
